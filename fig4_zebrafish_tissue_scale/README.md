@@ -125,8 +125,7 @@ acquired were:
 
 ## Running
 
-The runs were executed on a cluster node with 3 or 6 GPUs; the engine detects the GPUs it is
-given and runs on one as well. Tiles of 1024 px need roughly 8 GB of GPU memory for stage 1 and
+The engine uses the GPUs it finds and runs on one as well. Tiles of 1024 px need roughly 8 GB of GPU memory for stage 1 and
 tens of GB of RAM per tile for stage 2. The tests in `tests/test_fig4_chain.py` step through every
 run and fine-tuning notebook with the segmentation stages replaced by stand-ins that only record
 their settings, so they check the settings above without data or a GPU.

@@ -24,7 +24,7 @@ data/fig2/
 ```
 
 To reproduce only the figures, the deposit's `cross_round_metrics/` folder is enough (steps 3
-and 4). Steps 1 and 2 need a GPU and could take days on a local machine (we recommend running them on a computing cluster with GPUs).
+and 4). Steps 1 and 2 need a GPU and take days.
 
 ### What step 1 produces (file by file)
 
