@@ -60,7 +60,7 @@ checkpoints bit for bit.
 |---|---|---|---|
 | 1. Sample slices and train, round by round | `1_training/train_hitl_rounds_lateral.ipynb` (XY) and `train_hitl_rounds_axial.ipynb` (XZ + YZ) | `../ground_truth/zebrafish/development/` | `training_data_{spatial,axial}/`, `training_rounds_results/` |
 | 2. Cross-round evaluation | `2_cross_round_benchmark/cross_round_benchmark.ipynb` | the 20 checkpoints and the 10 cumulative slice sets per view | `cross_round_metrics/{spatial,axial}_cross_round_metrics.csv` |
-| 3. Filter and summarise | `3_metrics/process_2D_cross_round_metrics.py` (rationale in `2D_cross_round_processing_notes.md`) | the two raw CSVs | `cross_round_metrics/*_filtered.csv` (large, stay in the data folder) and, next to the script, `2D_cross_round_heatmap_{lateral,axial}.csv` and `2D_final_round_summary.csv` (= Table S2a; committed) |
+| 3. Filter and summarise | `3_metrics/process_2D_cross_round_metrics.py` (rationale in `2D_cross_round_processing_notes.md`) | the two raw CSVs | `cross_round_metrics/*_filtered.csv` (large, stay in the data folder) and, next to the script, `2D_cross_round_heatmap_{lateral,axial}.csv` and `2D_final_round_summary.csv` (= Table S2a; included here) |
 | 4. Plot | `4_plots/figure2_main.py`, `figure2_supp.py` (Fig. 2D, 2E, S2B) and `figure2_cumulative_training.py` (S2A) | the filtered CSVs; the raw CSVs for S2A | next to the scripts: `figure2_main` and `figure2_supp` as HTML, plus SVG / PDF / PNG when kaleido can export static images; `figure2_cumulative_training.html` only (HTML, no static image) |
 
 ## Settings as run (step 1), checked against Methods and Table S5
@@ -83,5 +83,5 @@ Step 2 predicts with `channels=[2, 1]`, `normalize=True`, `diameter=None`,
 `python -m pytest tests -q` from the repository root checks that the file names agree from
 step to step, that the filter keeps exactly the slices the Methods describe (synthetic data),
 and, when `data/fig2/cross_round_metrics/` is present, that the filter script reproduces the
-committed summary tables.
+summary tables included in `3_metrics/`.
 

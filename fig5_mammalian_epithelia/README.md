@@ -24,8 +24,8 @@ in the EpiCycle plugin) in its full-resolution mode: tiling (stage 0), 2D segmen
 in the three views with the lateral and axial models (stage 1), per-tile direct 3D reconstruction
 with u-Segment3D (stage 2), then the tile masks joined at full resolution where tiles overlap, cells
 matched by overlap (IoU), in place of the assembly and global reconstruction used for Fig. 4, a post-stitch clean-up and smoothing,
-and per-cell features. The recorded outputs are from the runs of 19 June 2026 (the log
-timestamps), made with an earlier build of the engine; the notebooks import the plugin's engine.
+and per-cell features. The saved printouts are from the original runs, made with an earlier
+build of the engine; the notebooks import the plugin's engine.
 
 ## Where the data for this section should be located
 
@@ -52,16 +52,16 @@ data/fig5/
   human_finetuning/
     multi_stack_models-finetune_Zf_to_human/models/
       multi_stack_lateral_finetune_Zf2human, multi_stack_axial_finetune_Zf2human
-                                                      the fine-tuned pair, with loss curves and training configs (written; deposited)
-    dense_FT_ZfHuman-lateral/, dense_FT_ZfHuman-axial/  the slice splits: train/, val/, test/ and metadata.json (written; deposited)
+                                                      the fine-tuned pair, with loss curves and training configs (deposited; made by the fine-tuning notebooks)
+    dense_FT_ZfHuman-lateral/, dense_FT_ZfHuman-axial/  the slice splits: train/, val/, test/ and metadata.json (deposited; made by the fine-tuning notebooks)
 data/ground_truth/human/crop/                         (read by the fine-tuning notebooks)
   img/human_patch1.tif, mask/human_patch1_mask.tif    the corrected human crop and its instance mask
 ```
 
 The checkpoints in `cell_models/` and `nuclei_models/` must be files named exactly `lateral` and
-`axial` (the engine hands the path to Cellpose as a checkpoint). The nucleus run read its pair as
-`nuclei_models/lateral (1)` and `axial (1)` (its log line shows the old names); the notebook and the
-deposit use the plain names.
+`axial` (the engine hands the path to Cellpose as a checkpoint). The nucleus run's log line names
+its pair `nuclei_models/lateral (1)` and `axial (1)`; these are the files `nuclei_models/lateral` and
+`axial`, the names the notebook and the deposit use.
 
 ## The setup
 
@@ -97,7 +97,7 @@ A nucleus straddling two or more cells is cut at the cell boundary (a piece must
 20 % of the nucleus's in-cell voxels; the cut pieces are smoothed with sigma 1.5); cells under 100
 voxels and nuclei outside every cell are dropped; holes are filled and cells are not smoothed; a
 cell left without a nucleus gets one recovered from the nuclear stain (channel 0) where possible;
-cells with two or more nuclei are kept and reported. Recorded result: 82,063 cells, 77,490 of them
+cells with two or more nuclei are kept and reported. Result: 82,063 cells, 77,490 of them
 with a nucleus (94.4 %); 1,867 cells hold two or more nuclei.
 
 Human fine-tuning (Table S5): both notebooks start from the DSM checkpoint of their view and
@@ -116,25 +116,25 @@ the `test/` folder of the export and not used.
   slices, the full Y extent of the crop).
 - Fine-tuning is seeded only for the split. The trainer's seed is left unset, so re-training gives a
   different pair; Figs. 5C-F, 6 and 7 use the deposited pair.
-- The axial notebook's recorded export line names the folder `dense_FT_ZfHuman`; the code and the
-  deposit name it `dense_FT_ZfHuman-axial`.
+- The export line in the axial notebook's printout names the folder `dense_FT_ZfHuman`; the code
+  and the deposit name it `dense_FT_ZfHuman-axial`.
 - Sections 6 and 7 of `cleanup_consensus.ipynb` compute per-cell and per-nucleus feature tables
   for inspection; section 7 writes them only with `WRITE_FEATURES = True`, which is False, and
-  nothing in this repository reads them. They have no recorded output.
+  nothing in this repository reads them. They show no saved output.
 - The inline viewer of `cleanup_consensus.ipynb` (section 5) reads the consensus `.npy` files
   from `reconcile/`, which are not deposited; it falls back to the arrays in memory.
-- The nucleus notebook's recorded output is a resumed run: its log shows tiling, segmentation and
+- The nucleus notebook's saved printout is from a resumed run: its log shows tiling, segmentation and
   reconstruction already complete (0.0 s); the stitch and the feature stage ran, and the clean-up was
   skipped as already complete (its counts come from the existing manifest). The segmentation settings
   of that run are in its parameters log line.
-- The run notebooks do not pass a `feature_set` to the feature stage. The recorded runs measured
+- The run notebooks do not pass a `feature_set` to the feature stage. The original runs measured
   the families morphology, surface, discrete compactness, skeleton, cross-section, crowding and
   provenance (log line of section 12); the plugin engine's default set is `"full"`, so a re-run
   writes more columns.
 - The `FLOW_THRESHOLD`, `CELLPROB_THRESHOLD`, `CHANNELS` and `BATCH_SIZE` variables are passed to
   the segmentation stage here (unlike the Fig. 4 notebooks). The coarse-mode cells (assembly and
   global reconstruction parameters) are not used, since `MODE = "full"`.
-- Resources: the runs used 3 GPUs (the log), and stage 1 runs at batch size 1024. The consensus
+- Resources: the runs used 3 GPUs (as their log shows), and stage 1 runs at batch size 1024. The consensus
   notebook holds the two int32 label volumes of 266 x 5631 x 4709 voxels (about 28 GB each) in
   memory, plus their cleaned copies.
 - The fine-tuning notebooks import `TrainingConfig` and `CellposeTrainer` from the EpiCycle
@@ -142,5 +142,5 @@ the `test/` folder of the export and not used.
   `finetune_helpers.py` next to them, the same file as `../fig4_zebrafish_tissue_scale/wound_finetuning/finetune_helpers.py`.
 
 `python -m pytest tests -q` from the repository root steps through the notebooks with the segmentation
-stages and the trainer replaced by stand-ins that only record their settings (`tests/test_fig5_chain.py`),
+stages and the trainer replaced by stand-ins that only capture their settings (`tests/test_fig5_chain.py`),
 so it checks the settings above without data or a GPU.

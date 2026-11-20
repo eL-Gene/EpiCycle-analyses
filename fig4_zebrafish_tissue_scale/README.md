@@ -47,15 +47,13 @@ Notes for a reader comparing the notebooks with the tables:
   threshold 0.2, cell probability 0, channels [2, 1]. The engine's log line in the printed output
   shows them, except in the strip notebook, whose printed output covers stage 4 only. The flow threshold acts on Cellpose's 2D masks only; the reconstruction
   consumes the probability and flow maps, so it has no effect on the result.
-- The strip notebook runs all stages from `input.tif`, like the other five. The original run of
-  February 2026 ran only the last stage (on 4 February), on tiles and stage 1-3 outputs the same
-  notebook had made earlier with the same settings; its printed output shows only that stage.
-- The wound notebook ran all five stages on 3 to 4 February 2026; the scale-stage notebooks on
-  4 February 2026.
-- The engine the February runs used was an earlier build of the one now in the plugin.
+- The strip notebook runs all stages from `input.tif`, like the other five; its saved printout
+  covers only the last stage, because the original run reused tiles and stage 1-3 outputs made
+  earlier with the same settings.
+- The runs used an earlier build of the engine that is now in the plugin.
   The notebooks import the plugin's engine, whose only behavioural difference in the stages
-  used is the stage-2 default for gradient renormalisation (off then, on now); the notebooks pass
-  it explicitly.
+  used is the stage-2 default for gradient renormalisation (off in the build the runs used, on in
+  the plugin); the notebooks set it explicitly.
 - The fine-tuning notebooks import `TrainingConfig` and `CellposeTrainer` from the EpiCycle
   plugin (`packages.epicycle_training`) and the slice loader and split exporter from
   `wound_finetuning/finetune_helpers.py`.
@@ -79,9 +77,9 @@ data/fig4/
           stage4_global/global_segmentation.tif                  the final whole-tissue mask (deposited)
   wound_finetuning/
       multi_stack_models/models/multi_stack_lateral_finetune, multi_stack_axial_finetune
-                     the fine-tuned pair with its loss curves and training configs (written by the notebooks; deposited)
+                     the fine-tuned pair with its loss curves and training configs (deposited; made by the fine-tuning notebooks)
       exports/multi_stack_split/, exports-axial/multi_stack_split/
-                     the lateral and axial slice splits: train/, val/, test/ and metadata.json (written by the notebooks; deposited)
+                     the lateral and axial slice splits: train/, val/, test/ and metadata.json (deposited; made by the fine-tuning notebooks)
       fig4c_results/result_crop_dsm_raw.tif, result_crop_post_finetune.tif
                      the corrected wound tile patch_wound-3 segmented with the DSM pair before and after the wound
                      fine-tuning (deposited); its quadrants are numbered 3-1 top left, 3-2 top right, 3-3 bottom left,
@@ -111,8 +109,8 @@ stage 4 is skipped because the deposited mask exists. Delete the sample's engine
 (`<sample>/<engine>/`) to recompute.
 
 `input.tif` is the processed, isotropic microscope volume (Z, C, Y, X; channel 0 nuclei,
-channel 1 membrane) each notebook tiles. The deposit names them as above; the files as
-acquired were:
+channel 1 membrane) each notebook tiles. The deposit names them as above; the microscope
+files they come from are named:
 
 | Sample | Original file name |
 |---|---|
@@ -127,5 +125,5 @@ acquired were:
 
 The engine uses the GPUs it finds and runs on one as well. Tiles of 1024 px need roughly 8 GB of GPU memory for stage 1 and
 tens of GB of RAM per tile for stage 2. The tests in `tests/test_fig4_chain.py` step through every
-run and fine-tuning notebook with the segmentation stages replaced by stand-ins that only record
+run and fine-tuning notebook with the segmentation stages replaced by stand-ins that only capture
 their settings, so they check the settings above without data or a GPU.

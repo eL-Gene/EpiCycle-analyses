@@ -36,7 +36,7 @@ data/fig3/
   domain-specialized_finetuned_CPCyto3/models/                     cyto3 fine-tunes           (step 2 -> 3)
   benchmark_outputs/<stack>/<model_id>_mask.tif + _meta.json       reconstructions           (step 3 -> 4)
   benchmark_outputs_finetuned/<stack>/...
-  metrics_outputs/                 the two metric tables written by step 4 (committed copies in 4_metrics/)
+  metrics_outputs/                 the two metric tables written by step 4 (copies in 4_metrics/ in this repository)
 ```
 
 To reproduce only the figures, nothing from the deposit is needed: `4_metrics/` is in the
@@ -53,7 +53,7 @@ step 5, which reads only `4_metrics/`.
 | 2. Train the model pairs | `2_training/train_scratch_{lateral,axial}_{11stacks,7stacks}_{lenient,strict}.ipynb` (ceilings, from scratch), `finetune_bootstrap_round4_11stacks_{lenient,strict}.ipynb` (DSM), `finetune_cyto3_{lateral,axial}.ipynb` (cyto3 at learning rate 0.01, then 0.1) | `decomposed_2D/...`; the round-4 checkpoints; Cellpose cyto3 weights | `domain-specialized_*/models/<model_name>` + loss curves |
 | 3. Reconstruct every stack with every pair | `3_reconstruction/reconstruct_benchmark.ipynb` (bootstrap + scratch pairs), `reconstruct_benchmark_finetuned.ipynb` (DSM + cyto3 pairs); helpers in `benchmarking_scripts/` | the 11 stacks, the model pairs | `benchmark_outputs*/<stack>/<model_id>_mask.tif` + `_meta.json` |
 | 4. Score | `3_reconstruction/score_benchmark.ipynb`, `score_benchmark_finetuned.ipynb` | the reconstructions and the ground-truth masks | `metrics_outputs/3DRecon_metrics_BootStrapped.csv`, `3DRecon_Metrics_Finetuned.csv` (one row per stack per model: `ap50`, `tp`, `fp`, `fn`, model and checkpoint names) |
-| 5. Statistics and plots | `5_plots/compute_boxplot_stats.py` (Table S2c), `epicycle_benchmark_main_vertical.py` (Fig. 3C, E), `epicycle_benchmark_supp_vertical.py` (Fig. S3) | `4_metrics/*.csv` | next to the scripts: `boxplot_stats_main.csv`, `boxplot_stats_supp.csv` (committed) and `boxplot_stats_all.csv`; each figure as HTML, plus SVG when kaleido can export static images |
+| 5. Statistics and plots | `5_plots/compute_boxplot_stats.py` (Table S2c), `epicycle_benchmark_main_vertical.py` (Fig. 3C, E), `epicycle_benchmark_supp_vertical.py` (Fig. S3) | `4_metrics/*.csv` | next to the scripts: `boxplot_stats_main.csv`, `boxplot_stats_supp.csv` (included here) and `boxplot_stats_all.csv`; each figure as HTML, plus SVG when kaleido can export static images |
 
 ## Settings as run, checked against Methods and Tables S5, S6
 
@@ -87,12 +87,12 @@ Step 4: 3D AP@50 per stack from `benchmarking_scripts/reconstruction_metrics.py`
 `python -m pytest tests -q` from the repository root checks the layout, that every training
 notebook carries the Table S5 settings for its condition, that model names agree from the
 training notebooks through the reconstruction notebooks to the metric tables and the plot
-scripts, that the committed metric tables are well formed and carry Table S2b values, and
-that `compute_boxplot_stats.py` reproduces the committed Table S2c tables.
+scripts, that the metric tables in `4_metrics/` are well formed and carry Table S2b values, and
+that `compute_boxplot_stats.py` reproduces the Table S2c tables included in `5_plots/`.
 
 ## Notes
 
 - The cyto3 fine-tunes were run with Cellpose v3.1.1.2 (the version `environment.yml`
-  pins), one notebook per view, the 0.01 model first and the 0.1 model after it. The lateral notebook keeps its printed logs; the axial copy was saved
-  from an unfinished session (only its first two outputs are present).
+  installs), one notebook per view, the 0.01 model first and the 0.1 model after it. The lateral notebook keeps its printed logs; the axial
+  notebook shows only its first two outputs.
 

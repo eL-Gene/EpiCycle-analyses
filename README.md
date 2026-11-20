@@ -31,7 +31,7 @@ below. Running those notebooks again needs a GPU.
    numbered and run in that order. Each figure folder has a README that walks through its steps.
 
 `python -m pytest tests -q` runs the tests. They step through each notebook on tiny stand-in data,
-with the training and segmentation calls replaced by stand-ins that only record their settings, and
+with the training and segmentation calls replaced by stand-ins that only capture their settings, and
 check that every step reads the files the previous step wrote and uses the settings the paper reports.
 They need no deposit folder and no GPU.
 
@@ -54,7 +54,7 @@ for permissive, and so on); `TERMINOLOGY.md` is the translation table.
 | Fig. 4C; Video S3 | wound-region fine-tuning of the lateral and axial models | `fig4_zebrafish_tissue_scale/wound_finetuning/` | yes |
 | Fig. 5A, 5B; Video S5 | salivary gland cell and nucleus runs, consensus clean-up | `fig5_mammalian_epithelia/salivary_gland/` | yes |
 | Fig. 5C to F; Video S6 | zebrafish-to-human fine-tuning, then segmentation of the human stacks in the EpiCycle plugin (its Step 4) | `fig5_mammalian_epithelia/human/finetuning_zf_to_human/`; the plugin workspace is `data/fig6_7/workspace/` in the deposit | yes |
-| Fig. 6, 7; Videos S6, S7 | human cell morphospace and niche analysis | `fig6_7_human_morphospace/notebooks/01`, `02`, `03`, `04`, `05`; `stats/`; input is `data/fig6_7/all_stacks_features.csv` (in git) plus the plugin workspace in the deposit | no |
+| Fig. 6, 7; Videos S6, S7 | human cell morphospace and niche analysis | `fig6_7_human_morphospace/notebooks/01`, `02`, `03`, `04`, `05`; `stats/`; input is `data/fig6_7/all_stacks_features.csv` (included in this repository) plus the plugin workspace in the deposit | no |
 | Fig. 7 I to L statistics | group descriptives, omnibus and post hoc tests | `fig6_7_human_morphospace/stats/` | no |
 | Tables S1, S3, S5, S6 | the settings and feature lists as run | the "Settings as run" sections of the figure READMEs | no |
 
@@ -68,25 +68,21 @@ The Fig. 3 scoring notebooks take hours on a CPU. Their output goes to `data/fig
 the tables in `fig3_3d_reconstruction_benchmark/4_metrics/` are copies of that output (step 5 reads the
 copies).
 
-## Notes on provenance
+## Notes on the notebooks
 
-- The Fig. 6 and 7 notebooks here are the copies that produced the submitted figures
+- The Fig. 6 and 7 notebooks here are the ones that produced the figures of the paper
   (31 morphological features, niche clustering on the 3-hop contact graph at resolution 1.5).
   They differ from the tutorial notebooks shipped with the plugin.
-- The Fig. 6 and 7 notebooks are committed without outputs; the run and training notebooks keep
-  their printed text, and their images were removed to keep the files small.
+- The Fig. 6 and 7 notebooks are included without outputs; the run and training notebooks keep
+  their printed text but not their images.
 - The Fig. 4C and Fig. 5 fine-tuning notebooks import the trainer and its config from the EpiCycle
   plugin (`packages.epicycle_training`) and the slice loader and split exporter from a
   `finetune_helpers.py` next to the notebooks.
-- The zebrafish whole-tissue runs (February 2026) used an earlier build of the engine that is now part
+- The zebrafish whole-tissue runs used an earlier build of the engine that is now part
   of the plugin (`packages.epicycle_scaledseg`). The notebooks import the plugin's engine and set
-  explicitly the one stage default that changed since (see `fig4_zebrafish_tissue_scale/README.md`).
-- After the runs the code was tidied: paths were rewritten to the deposit layout, the engine import
-  was pointed at the plugin, a resume check was made stricter, and images were removed from the
-  outputs; the GPU pins were removed from the Fig. 3 training notebooks, the strip notebook's stage
-  switches were turned on to match the other five, a rerun no longer overwrites a trained model or
-  leaves stale split files, and figure saves fall back to HTML when the image exporter is missing.
-  No analysis setting changed.
+  explicitly the one stage default that differs between the two builds (see `fig4_zebrafish_tissue_scale/README.md`).
+- The saved printouts are from the original runs; the code has since been pointed at the folder
+  layout described here and checked to run from it.
 
 ## Layout
 
@@ -95,11 +91,11 @@ environment.yml                     the EpiCycle plugin environment
 TERMINOLOGY.md                      code words vs manuscript words
 tests/                              the tests described above (python -m pytest tests -q)
 tools/check_setup.py                checks that the packages and data folders are in place
-data/                               deposit map; only the 28 MB feature table is in git
+data/                               deposit map; of the data, only the 28 MB feature table is included here
 fig2_hitl_2d_benchmark/             1_training/ 2_cross_round_benchmark/ 3_metrics/ 4_plots/
 fig3_3d_reconstruction_benchmark/   1_dense_splits/ 2_training/ 3_reconstruction/ 4_metrics/ 5_plots/
 fig4_zebrafish_tissue_scale/        run notebooks, wound_finetuning/
 fig5_mammalian_epithelia/           salivary_gland/ human/finetuning_zf_to_human/
 fig6_7_human_morphospace/           notebooks/ stats/
-fig6_7_human_morphospace/tools/fix_step4_paths.py   makes the plugin workspace's record paths absolute
+fig6_7_human_morphospace/tools/fix_step4_paths.py   makes the paths in the plugin workspace's state file absolute
 ```

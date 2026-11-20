@@ -22,9 +22,9 @@ Everything is read from and written under `data/fig6_7/` (or the folder named by
 
 ```
 data/fig6_7/
-  all_stacks_features.csv                 17,436 cells x 113 columns, the 13 analysed stacks (in git and in the deposit; read by 01)
+  all_stacks_features.csv                 17,436 cells x 113 columns, the 13 analysed stacks (included in this repository and in the deposit; read by 01)
   workspace/                              the one plugin Step 4 workspace with the 14 human stacks (deposited, read)
-    stack_segmentation_state.json         one record per stack; its paths are relative to workspace/
+    stack_segmentation_state.json         one entry per stack; its paths are relative to workspace/
     artifacts/step4/qc/                   per-stack feature tables and <stack>_adjacency.csv (read by 02 and 04)
     artifacts/step4/runs/                 the label volumes (labels_path; read by 04 for Fig. 6H)
     artifacts/step4/meshes/<stack>/       cell_*.obj and mesh_manifest.csv (01 reads the manifests; 03, 04 and 05 render the .obj files)
@@ -43,7 +43,7 @@ data/fig6_7/
 
 The workspace holds 14 stacks; 13 are analysed. `(14 wks) front skin` was segmented but not
 smoothed, meshed or measured, is not in the feature table, and is in no figure. Notebook 02 uses
-only the stacks of the feature table, so its record in the state file is ignored.
+only the stacks of the feature table, so its entry in the state file is ignored.
 
 ## The setup
 
@@ -54,11 +54,11 @@ only the stacks of the feature table, so its record in the state file is ignored
 | 3. Shape panels | `notebooks/03_figure_panels.ipynb` | `run/all_features_multi_leiden.csv`, `run/morphospace_results.pkl`, `run/leiden_res_*/representative_cells.csv` | panels in `figures/`; `run/median_representatives.csv`, the median renders and galleries in `run/` |
 | 4. Niche panels | `notebooks/04_niche_figure_panels.ipynb` | both pickles; `run/niche_hop3_pure/leiden_res_1.5/` and `run/leiden_res_1.0/` representative cells; the state file (label volume, source stack, adjacency) for Fig. 6H | panels in `figures/` (with `Fig6H_isometric_unpatterned_adjacency.tif`); the niche and shape galleries in `run/` |
 | 5. Placode vs ridge | `notebooks/05_placode_vs_ridge.ipynb` | both pickles | `run/placode_vs_ridge/*.csv`, `figures/Fig7_placode_ridge_*` |
-| Statistics | `stats/fig7_stats.py`, then `stats/fig7_violins_stats.py` | both pickles | `stats/Fig7_IL_*.csv` (committed) and `stats/figures/` |
+| Statistics | `stats/fig7_stats.py`, then `stats/fig7_violins_stats.py` | both pickles | `stats/Fig7_IL_*.csv` (included here) and `stats/figures/` |
 
 Run 01 and 02 first; 03, 04, 05 and `stats/` read what they wrote, and 03, 04 and 05 also render the
 cell meshes of `workspace/` (04 also reads the state file, one label volume, its source stack and its
-adjacency table for Fig. 6H). The notebooks are committed without outputs.
+adjacency table for Fig. 6H). The notebooks are included without outputs.
 
 ## Settings as run
 

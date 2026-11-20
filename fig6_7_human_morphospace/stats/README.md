@@ -75,7 +75,7 @@ in `data/fig6_7/run/` (or in `fig6_7/run/` under the folder named by `EPICYCLE_A
 | `figures/Fig7{I,J,K,L}_*_stats.svg` and `.png` | the four violins; `figures/Fig7_significance_key` explains the stars |
 | `figures/*_allpairs.*` | the same with all six pairs (with `--all-pairs`) |
 
-The three tables are in git. `figures/` is written when `fig7_violins_stats.py` runs.
+The three tables are included in this folder. `figures/` is written when `fig7_violins_stats.py` runs.
 
 ## How to run
 

@@ -1,8 +1,8 @@
 # Terminology: code words vs manuscript words
 
-The notebooks, model folder names and metric tables keep the words used while the work was
-done. The manuscript uses different terms. This table maps one to the other; the code is
-not renamed so that every notebook, checkpoint name and CSV column still agree with each other.
+The notebooks, model folder names and metric tables use some words that differ from the
+manuscript's terms. This table maps one to the other; the code keeps its own words so that every
+notebook, checkpoint name and CSV column agree with each other.
 
 | In the code, file names and tables | In the manuscript | Where it appears |
 |---|---|---|

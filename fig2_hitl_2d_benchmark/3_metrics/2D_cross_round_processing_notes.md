@@ -1,15 +1,15 @@
 # 2D Cross-Round Metrics — Data Processing Notes
 
 ## Input files
-- `spatial_cross_round_metrics.csv` — Lateral (XY) model evaluations, 50,050 slice-level records
-- `axial_cross_round_metrics.csv` — Axial (XZ/YZ) model evaluations, 100,030 slice-level records
+- `spatial_cross_round_metrics.csv` — Lateral (XY) model evaluations, 50,050 slice-level rows
+- `axial_cross_round_metrics.csv` — Axial (XZ/YZ) model evaluations, 100,030 slice-level rows
 
 Each CSV contains per-slice metrics (dice, iou, aji, ap_50, ap_75, ap_90) for every combination of model round (0–9) × evaluation dataset round (0–9).
 
 ## Filtering: empty-slice exclusion (lateral only)
 
 ### Problem
-8.7% of lateral (spatial) slices have AP@50 = 0. Investigation reveals two distinct populations:
+8.7% of lateral (spatial) slices have AP@50 = 0. They fall into two distinct groups:
 
 | Category | Count | Description |
 |---|---|---|
@@ -34,7 +34,7 @@ The axial data has zero instances of AP@50 = 0, so no filtering is needed there.
 4. **Impact on medians**: Filtering primarily affects the lower tail of distributions; median AP@50 values change by ~0.01–0.02, preserving the same relative ordering and saturation pattern across rounds
 
 ## Output files
-- `spatial_cross_round_metrics_filtered.csv` — Lateral data with empty slices removed
+- `spatial_cross_round_metrics_filtered.csv` — Lateral data, empty slices excluded
 - `axial_cross_round_metrics_filtered.csv` — Axial data (unchanged, included for pipeline consistency)
 - `2D_cross_round_heatmap_lateral.csv` — Median AP@50 pivot table (model_round × eval_round), lateral
 - `2D_cross_round_heatmap_axial.csv` — Median AP@50 pivot table (model_round × eval_round), axial
