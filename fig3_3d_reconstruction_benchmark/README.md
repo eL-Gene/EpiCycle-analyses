@@ -40,9 +40,8 @@ data/fig3/
 ```
 
 To reproduce only the figures, nothing from the deposit is needed: `4_metrics/` is in the
-repository and step 5 runs from it. Steps 2 and 3 need GPUs. The cyto3 fine-tunes of step 2 ran on
-Google Colab (A100 GPUs); the other training notebooks and step 3 ran on a computing cluster (H200
-GPUs). Step 3 runs the three views of one stack on three GPUs in parallel. Step 4 runs on a CPU and
+repository and step 5 runs from it. Steps 2 and 3 need GPUs; step 3 runs the three views of one stack
+on three GPUs in parallel. Step 4 runs on a CPU and
 takes hours. It writes its two tables to `metrics_outputs/`; copy them into `4_metrics/` before
 step 5, which reads only `4_metrics/`.
 
@@ -93,7 +92,7 @@ that `compute_boxplot_stats.py` reproduces the committed Table S2c tables.
 
 ## Notes
 
-- The cyto3 fine-tunes were run on Colab with Cellpose v3.1.1.2 (the version `environment.yml`
+- The cyto3 fine-tunes were run with Cellpose v3.1.1.2 (the version `environment.yml`
   pins), one notebook per view, the 0.01 model first and the 0.1 model after it. The lateral notebook keeps its printed logs; the axial copy was saved
   from an unfinished session (only its first two outputs are present).
 
