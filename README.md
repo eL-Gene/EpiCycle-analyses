@@ -14,9 +14,9 @@ One conda environment runs every script and notebook here, and it includes the E
 it with `conda env create -f environment.yml`. Saving figures as images (SVG, PDF, PNG) needs Chrome or
 Edge on the machine; if neither is installed, run `kaleido_get_chrome` once in the environment.
 
-The GPU notebooks of Figs. 2 to 5 ran on a GPU cluster, and the cyto3 fine-tunes of Fig. 3 on Google
-Colab. Their printouts show those machines' folder names; the code itself reads from `data/` as
-described below. Running them again needs a GPU.
+The printed output saved in the training and whole-tissue notebooks comes from the original runs on
+other machines, so the folder names in it differ from `data/`; the code reads from `data/` as described
+below. Running those notebooks again needs a GPU.
 
 ## Running anything
 
