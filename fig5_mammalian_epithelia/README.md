@@ -20,13 +20,12 @@ plugin (Step 4). That workspace is deposited as `data/fig6_7/workspace/` and is 
 `../fig6_7_human_morphospace/README.md`.
 
 The two run notebooks are the EpiCycle whole-tissue engine notebook (`packages.epicycle_scaledseg`
-in EpiCycle v0.1.2) in its full-resolution mode: tiling (stage 0), 2D segmentation of every tile
+in the EpiCycle plugin) in its full-resolution mode: tiling (stage 0), 2D segmentation of every tile
 in the three views with the lateral and axial models (stage 1), per-tile direct 3D reconstruction
 with u-Segment3D (stage 2), then the tile masks joined at full resolution where tiles overlap, cells
 matched by overlap (IoU), in place of the assembly and global reconstruction used for Fig. 4, a post-stitch clean-up and smoothing,
 and per-cell features. The recorded outputs are from the runs of 19 June 2026 (the log
-timestamps), made with the engine before it was included in v0.1.2; the notebooks now import the
-v0.1.2 package.
+timestamps), made with an earlier build of the engine; the notebooks import the plugin's engine.
 
 ## Where the data for this section should be located
 
@@ -130,7 +129,7 @@ the `test/` folder of the export and not used.
   of that run are in its parameters log line.
 - The run notebooks do not pass a `feature_set` to the feature stage. The recorded runs measured
   the families morphology, surface, discrete compactness, skeleton, cross-section, crowding and
-  provenance (log line of section 12); the v0.1.2 engine's default set is `"full"`, so a re-run
+  provenance (log line of section 12); the plugin engine's default set is `"full"`, so a re-run
   writes more columns.
 - The `FLOW_THRESHOLD`, `CELLPROB_THRESHOLD`, `CHANNELS` and `BATCH_SIZE` variables are passed to
   the segmentation stage here (unlike the Fig. 4 notebooks). The coarse-mode cells (assembly and

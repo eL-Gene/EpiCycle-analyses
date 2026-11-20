@@ -13,8 +13,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-pytest.importorskip("packages.epicycle_scaledseg", reason="EpiCycle v0.1.2 (the plugin's packages/) is not installed")
-pytest.importorskip("packages.epicycle_training", reason="EpiCycle v0.1.2 (the plugin's packages/) is not installed")
+pytest.importorskip("packages.epicycle_scaledseg", reason="the EpiCycle plugin (its packages/) is not installed")
+pytest.importorskip("packages.epicycle_training", reason="the EpiCycle plugin (its packages/) is not installed")
 
 from _nbexec import code_cells, fake_engine, needs_data_root, run_cells  # noqa: E402  (fig5 imports them from here)
 

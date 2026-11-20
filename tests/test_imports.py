@@ -1,7 +1,7 @@
 """Every import in the notebooks and scripts resolves to a package in environment.yml or a helper file next to the notebook.
 
 The packages count as installed when the environment file installs them directly or through the
-pinned EpiCycle v0.1.2 (its plugin packages and u-Segment3D included). An import of a private
+the pinned EpiCycle plugin (its plugin packages and u-Segment3D included). An import of a private
 module fails the test.
 
 Imports are read with `ast` (IPython magics and shell lines dropped first), so an import inside
@@ -22,7 +22,7 @@ PUBLIC_TOP = {                                                              # di
     "numpy", "pandas", "scipy", "skimage", "sklearn", "matplotlib", "pylab", "seaborn", "plotly", "kaleido",
     "tifffile", "tqdm", "natsort", "cellpose", "torch", "torchvision", "umap", "leidenalg", "igraph", "networkx",
     "pyvista", "trimesh", "ptitprince", "PIL", "cv2", "yaml", "joblib", "h5py", "zarr", "dask", "napari", "imageio",
-    "napari_epicycle",                                                      # EpiCycle v0.1.2
+    "napari_epicycle",                                                      # the EpiCycle plugin
     "segment3D",                                                            # u-Segment3D
 }
 PRIVATE_TOP = {"epicycle", "epicycle_local", "epicycle_training", "epicycle_core", "largescale_segmentation"}
@@ -184,7 +184,7 @@ def test_imports_are_installable(path):
     chunks = dict((str(p), c) for p, c in FILES)[str(path)]
     verdicts = {mod: classify(path, mod) for mod in imported_modules(chunks)}
     if "EPICYCLE NOT INSTALLED" in verdicts.values():
-        pytest.skip("EpiCycle v0.1.2 is not installed: its packages.* imports cannot be checked")
+        pytest.skip("the EpiCycle plugin is not installed: its packages.* imports cannot be checked")
     bad = {mod for mod, v in verdicts.items() if v in ("PRIVATE", "UNKNOWN")}
     expected = EXPECTED_PRIVATE.get(rel, set())
     assert bad == expected, (f"{rel} imports {sorted(bad)}, expected {sorted(expected)}: nothing private, and every "

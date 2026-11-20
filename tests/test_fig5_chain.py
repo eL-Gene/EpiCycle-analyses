@@ -14,8 +14,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-pytest.importorskip("packages.epicycle_scaledseg", reason="EpiCycle v0.1.2 (the plugin's packages/) is not installed")
-pytest.importorskip("packages.epicycle_training", reason="EpiCycle v0.1.2 (the plugin's packages/) is not installed")
+pytest.importorskip("packages.epicycle_scaledseg", reason="the EpiCycle plugin (its packages/) is not installed")
+pytest.importorskip("packages.epicycle_training", reason="the EpiCycle plugin (its packages/) is not installed")
 
 from _nbexec import FeatureStage, PostprocessStage, fake_engine  # noqa: E402  (the engine fakes, shared with Fig. 4)
 from test_fig4_chain import (FakeTrainer, _write_synthetic_crops, code_cells, needs_data_root, run_cells,  # noqa: E402

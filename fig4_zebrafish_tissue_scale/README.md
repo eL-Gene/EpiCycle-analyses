@@ -14,7 +14,7 @@ Words used in the code vs the manuscript: see `TERMINOLOGY.md` at the repository
 | `run_scale_preplacode.ipynb`, `run_scale_placode.ipynb`, `run_scale_condensate.ipynb`, `run_scale_maturing.ipynb` | 4D, Video S4 | Whole-tissue runs on the four scale-development stages with the DSM pair |
 
 Every run notebook is the same engine notebook (the EpiCycle whole-tissue pipeline,
-`packages.epicycle_scaledseg` in EpiCycle v0.1.2) with the paths and settings of that sample:
+`packages.epicycle_scaledseg` in the EpiCycle plugin) with the paths and settings of that sample:
 tiling (stage 0), 2D segmentation of every tile in the three views with the lateral and axial
 models (stage 1), per-tile direct 3D reconstruction with u-Segment3D (stage 2), assembly of the
 tile masks and probability maps into the full volume (stage 3), and the global reconstruction
@@ -52,8 +52,8 @@ Notes for a reader comparing the notebooks with the tables:
   notebook had made earlier with the same settings; its printed output shows only that stage.
 - The wound notebook ran all five stages on 3 to 4 February 2026; the scale-stage notebooks on
   4 February 2026.
-- The engine the February runs used was a pre-release of the one included in EpiCycle v0.1.2.
-  The notebooks now import the v0.1.2 package, whose only behavioural difference in the stages
+- The engine the February runs used was an earlier build of the one now in the plugin.
+  The notebooks import the plugin's engine, whose only behavioural difference in the stages
   used is the stage-2 default for gradient renormalisation (off then, on now); the notebooks pass
   it explicitly.
 - The fine-tuning notebooks import `TrainingConfig` and `CellposeTrainer` from the EpiCycle

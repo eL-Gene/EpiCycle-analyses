@@ -3,7 +3,8 @@
 Code behind the figures of *Quitevis et al., EpiCycle* (in preparation). This repository holds
 the analysis scripts, the notebooks, with the printed output of the original runs, and the small
 summary tables. The segmentation method itself is the EpiCycle napari plugin
-(https://github.com/eL-Gene/EpiCycle, release **v0.1.2**); nothing from it is copied here.
+(https://github.com/eL-Gene/EpiCycle); nothing from it is copied here, and `environment.yml` installs the
+release the notebooks were checked with.
 The image data, segmentation masks, model checkpoints and intermediate pickles are deposited
 separately (see `data/README.md`).
 
@@ -77,11 +78,11 @@ copies).
 - The Fig. 4C and Fig. 5 fine-tuning notebooks import the trainer and its config from the EpiCycle
   plugin (`packages.epicycle_training`) and the slice loader and split exporter from a
   `finetune_helpers.py` next to the notebooks.
-- The zebrafish whole-tissue runs (February 2026) used a pre-release of the engine included in
-  EpiCycle v0.1.2 (`packages.epicycle_scaledseg`). The notebooks import the v0.1.2 package and
-  explicitly pass the one stage default that changed since (see `fig4_zebrafish_tissue_scale/README.md`).
+- The zebrafish whole-tissue runs (February 2026) used an earlier build of the engine that is now part
+  of the plugin (`packages.epicycle_scaledseg`). The notebooks import the plugin's engine and set
+  explicitly the one stage default that changed since (see `fig4_zebrafish_tissue_scale/README.md`).
 - After the runs the code was tidied: paths were rewritten to the deposit layout, the engine import
-  was pointed at EpiCycle v0.1.2, a resume check was made stricter, and images were removed from the
+  was pointed at the plugin, a resume check was made stricter, and images were removed from the
   outputs; the GPU pins were removed from the Fig. 3 training notebooks, the strip notebook's stage
   switches were turned on to match the other five, a rerun no longer overwrites a trained model or
   leaves stale split files, and figure saves fall back to HTML when the image exporter is missing.
