@@ -1,0 +1,41 @@
+# EpiCycle environment.  Create it with:  conda env create -f environment.yml
+# Versions follow EpiCycle v0.1.2's lock file (the `-c` constraint line below).
+name: epicycle
+variables:
+  VISPY_PYQT5_SHARE_CONTEXT: "true"
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      # Constrain every transitive dependency to the validated versions.
+      - -c https://raw.githubusercontent.com/eL-Gene/EpiCycle/v0.1.2/requirements-lock.txt
+      # GPU PyTorch (cu118 builds).  Without an NVIDIA GPU the scripts and CPU notebooks still run;
+      # training and segmentation need the GPU.
+      # Another CUDA build of torch 2.7.1 can be used by changing the index URL below.
+      - --extra-index-url https://download.pytorch.org/whl/cu118
+      - torch==2.7.1
+      - torchvision==0.22.1
+      # u-Segment3D at the commit EpiCycle v0.1.2 uses
+      - u-Segment3D @ https://github.com/DanuserLab/u-segment3D/archive/5d11e1efad810409ef3ebccf25101484b97d42fb.zip
+      # EpiCycle itself (brings napari 0.8.0, Cellpose 3.1.1.2, and PyQt6 via the extra).
+      - napari-epicycle[pyqt6] @ https://github.com/eL-Gene/EpiCycle/archive/refs/tags/v0.1.2.zip
+      # Added for this repository: the figure scripts and the tests.
+      - plotly
+      - kaleido   # kaleido 1.x needs Chrome or Edge; run kaleido_get_chrome once if neither is installed
+      - seaborn
+      - pytest
+      # Used by the figure notebooks beyond what EpiCycle installs.
+      - natsort
+      - ptitprince
+      - trimesh
+      - pyvista
+      # Pinned: the shape and niche cluster numbering of Figs. 6 and 7 depends on these three
+      # versions (they reproduced the 16 shape clusters).
+      - umap-learn==0.5.11
+      - leidenalg==0.11.0
+      - igraph==1.0.0
+      # Running the notebooks, and the inline viewer in the salivary-gland clean-up notebook.
+      - jupyterlab
+      - ipywidgets

@@ -1,0 +1,17 @@
+panel,feature,value,group,n,mean,sd,median,q1,q3,median_raw
+I,major_axis_z_angle,major_axis_z_angle,placode_background,393,77.26888,12.38921,81.27776,72.36056,85.72341,81.27776
+I,major_axis_z_angle,major_axis_z_angle,hair_placode,276,55.16663,21.2019,50.00276,40.13443,75.32954,50.00276
+I,major_axis_z_angle,major_axis_z_angle,ridge,1903,51.63721,22.62683,52.74756,33.7576,70.94093,52.74756
+I,major_axis_z_angle,major_axis_z_angle,ridge_background,1006,77.20267,14.54078,82.04072,74.13482,86.83931,82.04072
+J,axis_minor_length,axis_minor_length,placode_background,393,7.32439,0.99058,7.32886,6.68905,7.9859,7.32886
+J,axis_minor_length,axis_minor_length,hair_placode,276,6.25837,1.01372,6.05993,5.52606,6.82506,6.05993
+J,axis_minor_length,axis_minor_length,ridge,1903,5.34125,0.72654,5.30503,4.88105,5.79163,5.30503
+J,axis_minor_length,axis_minor_length,ridge_background,1006,5.3287,0.77493,5.28825,4.87074,5.73192,5.28825
+K,area,area_log1p,placode_background,393,6.37843,0.32684,6.38086,6.2142,6.58571,589.43487
+K,area,area_log1p,hair_placode,276,6.05409,0.34125,6.0141,5.8207,6.28734,408.16005
+K,area,area_log1p,ridge,1903,5.23928,0.29991,5.23357,5.12081,5.36139,186.46097
+K,area,area_log1p,ridge_background,1006,5.4972,0.45229,5.50558,5.23121,5.77927,245.05995
+L,true_sphericity,true_sphericity,placode_background,393,0.76965,0.04452,0.77445,0.74027,0.80082,0.77445
+L,true_sphericity,true_sphericity,hair_placode,276,0.7565,0.04573,0.75838,0.72395,0.79079,0.75838
+L,true_sphericity,true_sphericity,ridge,1903,0.82295,0.03095,0.82551,0.80314,0.8454,0.82551
+L,true_sphericity,true_sphericity,ridge_background,1006,0.79517,0.05078,0.80332,0.76626,0.83231,0.80332
