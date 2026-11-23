@@ -34,7 +34,7 @@ Fig. 7 violins").
 `fig7_violins_stats.py` draws the four violins of Fig. 7 I-L with bars for the four comparisons the
 text makes: each structure against its own surroundings, hair placode against ridge, and the two
 surroundings against each other. Each group is a half-violin (a kernel density) with a box
-(median and quartiles). Each panel is 560 x 460 px. Up to 500 cells per group are drawn as
+(median and quartiles; whiskers to the furthest cell within 1.5 x IQR). Each panel is 560 x 460 px. Up to 500 cells per group are drawn as
 dots at 75 % opacity; the boxes and densities use all cells. The density line is 2 px wide, there is
 no grid, and the frame is open. The densities stop at the data. The y axis stops at the data or at
 the physical bound (tilt 0-90, sphericity 0.5-1), and the bars sit above it. The number of cells is

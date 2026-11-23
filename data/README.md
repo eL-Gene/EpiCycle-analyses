@@ -1,6 +1,6 @@
 # Data deposit map
 
-Everything below is deposited in the BioImage Archive (accession: to be added) and is
+Everything below is deposited in the BioImage Archive (accession S-BIAD4434) and is
 **not** included in this repository, except `fig6_7/all_stacks_features.csv`. Download each folder into
 its place here (`data/ground_truth/`, `data/fig2/`, `data/fig3/`, ...); every script and notebook
 resolves its inputs from this folder. To keep the data elsewhere, set the `EPICYCLE_ANALYSES_DATA`
@@ -8,7 +8,7 @@ environment variable to the folder that contains both `ground_truth/` and the `f
 
 ## Deposit facts
 
-- Accession: to be added. The data are in the BioImage Archive; the raw images are in the same study, under `Raw_images/`.
+- Accession S-BIAD4434 in the BioImage Archive; the raw images are in the same study, under `Raw_images/`.
 - Licence: to be added (the archive's default is CC0).
 - Size per top-level folder:
 
